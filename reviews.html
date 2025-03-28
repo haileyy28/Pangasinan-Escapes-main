@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .reviews-section {
+            padding: 20px;
+        }
+        .rating-filter button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .review-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .pagination {
+            margin: 20px;
+        }
+        .footer-container {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .footer-container h3 {
+            margin-bottom: 10px;
+        }
+        .copyright {
+            background: #1a252f;
+            color: white;
+            padding: 10px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <section class="reviews-section">
+        <h2><em>Reviews</em></h2>
+        <div class="rating-filter">
+            <button class="star-rating">★★★★★</button>
+            <button class="star-rating">★★★★☆</button>
+            <button class="star-rating">★★★☆☆</button>
+            <button class="star-rating">★★☆☆☆</button>
+            <button class="star-rating">★☆☆☆☆</button>
+        </div>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="reviewer">⚫ Juan Gonzales</div>
+                <p>“ The place is very nice and clean. The people are friendly, good for family bonding.”</p>
+            </div>
+            <div class="review-card">
+                <div class="reviewer">⚫ Juan Gonzales</div>
+                <p>“ The place is very nice and clean. The people are friendly, good for family bonding.”</p>
+            </div>
+            <div class="review-card">
+                <div class="reviewer">⚫ Juan Gonzales</div>
+                <p>“ The place is very nice and clean. The people are friendly, good for family bonding.”</p>
+            </div>
+            <div class="review-card">
+                <div class="reviewer">⚫ Juan Gonzales</div>
+                <p>“ The place is very nice and clean. The people are friendly, good for family bonding.”</p>
+            </div>
+        </div>
+        <div class="pagination">
+            <button class="prev">&lt;</button>
+            <button class="next">&gt;</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="about">
+                <h3>Pangasinan Travels</h3>
+                <p>Pangasinan Travels is your ultimate travel companion, helping you discover destinations...</p>
+            </div>
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li>Home</li>
+                    <li>Places To Go</li>
+                    <li>Itinerary Planner</li>
+                    <li>About Us</li>
+                </ul>
+            </div>
+            <div class="contact">
+                <h3>Contact</h3>
+                <p>📧 pangasinantravels@gmail.com</p>
+                <p>📞 +6399 544 23018</p>
+            </div>
+            <div class="social">
+                <h3>Follow Us</h3>
+                <p>🔵 🔴</p>
+            </div>
+        </div>
+        <p class="copyright">© 2025 Pangasinan Travels. All rights reserved.</p>
+    </footer>
+    <script>
+        const reviews = [
+            { name: "Juan Gonzales", text: "The place is very nice and clean. The people are friendly, good for family bonding." },
+            { name: "Juan Gonzales", text: "Great experience! Definitely coming back." },
+            { name: "Juan Gonzales", text: "Loved the ambiance and hospitality." },
+            { name: "Juan Gonzales", text: "A must-visit place for nature lovers." },
+            { name: "Juan Gonzales", text: "Perfect getaway for the weekend." },
+            { name: "Juan Gonzales", text: "Highly recommended for families." }
+        ];
+        
+        let currentPage = 0;
+        const reviewsPerPage = 4;
+        
+        function displayReviews() {
+            const container = document.getElementById("reviewsContainer");
+            container.innerHTML = "";
+            const start = currentPage * reviewsPerPage;
+            const end = start + reviewsPerPage;
+            const pageReviews = reviews.slice(start, end);
+            
+            pageReviews.forEach(review => {
+                const reviewCard = document.createElement("div");
+                reviewCard.classList.add("review-card");
+                reviewCard.innerHTML = `<div class="reviewer">⚫ ${review.name}</div><p>“ ${review.text}”</p>`;
+                container.appendChild(reviewCard);
+            });
+        }
+        
+        function nextPage() {
+            if ((currentPage + 1) * reviewsPerPage < reviews.length) {
+                currentPage++;
+                displayReviews();
+            }
+        }
+        
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                displayReviews();
+            }
+        }
+        
+        displayReviews();
+    </script>
+</body>
+</html>
